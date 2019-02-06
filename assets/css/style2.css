@@ -1,0 +1,52 @@
+.four-agileits {
+    background: #ff4a43;
+    text-align: center;
+    padding: 2em 0;
+}
+.four-agileinfo {
+    background: #22beef;
+    padding: 2em 0;
+    text-align: center;
+}
+.four-w3ls {
+    background: #a2d200;
+    padding: 2em 0;
+    text-align: center;
+}
+.four-wthree {
+    background: #8e44ad;
+    padding: 2em 0;
+    text-align: center;
+}
+.four-grid:nth-child(1) {
+    padding-left: 0;
+}
+.four-grid:nth-child(4) {
+    padding-right: 0;
+}
+.four-grids {
+    margin: 2em 0;
+}
+.four-grid i.glyphicon {
+    color: #fff;
+    font-size: 32px;
+}
+.four-grid h3 {
+    font-size: 20px;
+    color: #fff;
+    margin: 14px 0;
+}
+.four-grids h4 {
+    font-size: 30px;
+    color: #fff;
+    margin: 0;
+}
+/*---//four-grids-----*/ 
+.card-body.p-b-20 .list-group {
+    margin-bottom: 0;
+}
+img.lg-item-img {
+    width: 51px;
+    height: 51px;
+    border-radius: 50%;
+}

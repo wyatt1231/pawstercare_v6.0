@@ -1,0 +1,34 @@
+Breed
+
+id	name
+1	Husky
+2	Labrador
+3	Pitbull
+4	Aspin
+5	Pug
+6	Chihuahua
+7	Labrador Retriever
+Pet_type
+id	Name
+1	Dog
+2	Cat
+
+Pets
+
+id	Name	Type	Breed			Owner
+1	Cane	Dog	Labraador Retriver	1
+2	Keith	Dog	Labrador		3
+3	Mason	Dog	Pitbull			2
+4	Abby	Dog	Aspin			4
+5	Dimple	Dog	Husky			1
+
+Owner
+id	name
+1	Edward
+2	Marc
+3	Beans
+4	Charise
+5	Fe
+6	Mj
+
+Fname, Mname, Lname, HAddress ,Birthdate,CStatus,OAddress,Email,Occupation
