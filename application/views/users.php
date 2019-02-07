@@ -20,27 +20,25 @@
             </div>
             <div class="row">
                 <div class="col-xs-12">
-                    <div class="box">
-                        <div class="box-header">
-                            <h3 class="box-title">Users List</h3>
-                            <div class="box-tools">
+                   <div class="box">
+                    <div class="box-header">
 
-                            </div>
-                        </div><!-- /.box-header -->
-                        <div class="box-body">
-                            <table id="admintable" class="table table-hover" cellspacing="5" width="100%">
-                                <thead>
-                                    <tr>
-                                       <th>Id</th>
-                                       <th>Name</th>
-                                       <th>Email</th>
-                                       <th>Mobile</th>
-                                       <th>Role</th>
-                                       <th>Created On</th>
-                                       <th class="text-center">Actions</th>
-                                   </tr>
-                               </thead>
-                               <tbody>
+                    </div>
+                    <div class="box-body" style="margin-left: 5% !important; margin-right: 5% !important;">
+                        <table id="admintable" class="table table-hover  table-sm  font-tnr font-tnr"
+                        style="font-family: 'Times New Roman'; font-size: 1em !important;">
+                        <thead>
+                            <tr>
+                             <th>Id</th>
+                             <th>Name</th>
+                             <th>Email</th>
+                             <th>Mobile</th>
+                             <th>Role</th>
+                             <th>Created On</th>
+
+                         </tr>
+                     </thead>
+                     <tbody>
                                   <!--   <?php
                                     if(!empty($records))
                                     {
@@ -82,55 +80,54 @@
                 </div>
 
 
+            </section></div>
 
 
-            </section>
-        </div>
-        <div class="modal fade font-tnr" id="mdl_block_admin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-md" role="document">
-            <div class="modal-content">
-                <section class="content-header">
+            <div class="modal fade font-tnr" id="mdl_block_admin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-md" role="document">
+                <div class="modal-content">
+                    <section class="content-header">
 
-                    <h1 style="width: 100%;">
-                        <i class="fa fa-users "></i> Block Admin Confirmation
-                        <i class="fa fa-close" id="btn_add_modal_close"
-                        style="color: red; float: right; list-style: none;"> </i>
-                        <div id="modal-loading">
-                        </div>
-                    </h1>
-                </section>
-                <div class=" modal-body " style="margin: 2% !important;">
-                    <section class="content">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="box box-primary">
-                                    <div class="box-header">
+                        <h1 style="width: 100%;">
+                            <i class="fa fa-users "></i> Block Admin Confirmation
+                            <i class="fa fa-close" id="btn_block_modal_close"
+                            style="color: red; float: right; list-style: none;"> </i>
+                            <div id="modal-loading">
+                            </div>
+                        </h1>
+                    </section>
+                    <div class=" modal-body " style="margin: 2% !important;">
+                        <section class="content">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="box box-primary">
+                                        <div class="box-header">
 
-                                    </div><!-- /.box-header -->
-                                    <!-- form start -->
-                                    <?php $this->load->helper("form"); ?>
-                                    <form id="form_block_admin" enctype="multipart/form-data">
-                                        <div class="box-body">
-                                            <h3 align="center">BLOCK ADMIN?</h3>
+                                        </div><!-- /.box-header -->
+                                        <!-- form start -->
+                                        <?php $this->load->helper("form"); ?>
+                                        <form id="form_block_admin" enctype="multipart/form-data">
+                                            <div class="box-body">
+                                                <h3 align="center">BLOCK ADMIN?</h3>
+                                                <h3 align="center" name="blockadminname" id='blockadminname'></h3>
+                                                <input type="hidden" name="user" id='user' value=''>
+                                            </div><!-- /.box-body -->
 
-                                            <input type="hidden" name="user" id='user' value=''>
-                                        </div><!-- /.box-body -->
-
-                                        <div class="box-footer" align="center">
-                                            <input type="submit" class="btn btn-primary" value="YES" />
-                                            <input type="reset" class="btn btn-default" value="CANCEL" />
-                                        </div>
-                                    </form>
+                                            <div class="box-footer" align="center">
+                                                <input type="submit" class="btn btn-primary" value="YES" />
+                                                <input type="reset" class="btn btn-default" id="btn_block1_modal_close" value="CANCEL" />
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </section>
+                        </section>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="modal fade font-tnr" id="mdl_approved_admin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        <div class="modal fade font-tnr" id="mdl_approved_admin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-md" role="document">
             <div class="modal-content">
@@ -138,7 +135,7 @@
 
                     <h1 style="width: 100%;">
                         <i class="fa fa-users "></i> Approve Admin Confirmation
-                        <i class="fa fa-close" id="btn_add_modal_close"
+                        <i class="fa fa-close" id="btn_approvalnotif_modal_close"
                         style="color: red; float: right; list-style: none;"> </i>
                         <div id="modal-loading">
                         </div>
@@ -157,14 +154,14 @@
                                     <form id="form_approved_admin" enctype="multipart/form-data">
                                         <div class="box-body">
                                             <h3 align="center">APPROVE ADMIN?</h3>
- <input type="hidden" name="approveuser" id='approveuser' value=''>
-  <h3 align="center" name="adminname" id='adminname'></h3>
-                                           
+                                            <input type="hidden" name="approveuser" id='approveuser' value=''>
+                                            <h3 align="center" name="adminname" id='adminname'></h3>
+
                                         </div><!-- /.box-body -->
 
                                         <div class="box-footer" align="center">
                                             <input type="submit" class="btn btn-primary" value="YES" />
-                                            <input type="reset" class="btn btn-default" value="CANCEL" />
+                                            <input type="reset" class="btn btn-default"  id="btn_approvalnotif1_modal_close" value="CANCEL" />
                                         </div>
                                     </form>
                                 </div>
@@ -184,9 +181,9 @@
 
                 <h1 style="width: 100%;">
                     <i class="fa fa-users "></i> Admin Adding Form
-                    <i class="fa fa-close" id="btn_add_modal_close"
+                    <i class="fa fa-close" id="btn_addadmin_modal_close"
                     style="color: red; float: right; list-style: none;"> </i>
-                    <div id="modal-loading">
+                    <div id="modal-loading-admin">
                     </div>
                 </h1>
             </section>
@@ -235,7 +232,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="mobile">Mobile Number</label>
-                                                    <input type="text" class="form-control required digits" id="mobile" value="<?php echo set_value('mobile'); ?>" name="mobile" maxlength="10">
+                                                    <input type="text" class="form-control required digits" id="mobile" value="<?php echo set_value('mobile'); ?>" name="mobile" maxlength="11">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -282,7 +279,7 @@ aria-hidden="true">
 
             <h1 style="width: 100%;">
                 <i class="fa fa-users "></i> Admin Approval Table
-                <i class="fa fa-close" id="btn_add_modal_close"
+                <i class="fa fa-close" id="btn_approval_modal_close"
                 style="color: red; float: right; list-style: none;"> </i>
                 <div id="modal-loading">
                 </div>
@@ -300,8 +297,9 @@ aria-hidden="true">
                                 </div>
                             </div><!-- /.box-header -->
                             <div class="box-body ">
-                                <table id="approvaltable" class="table table-hover" cellspacing="5" width="100%">
-                                 <thead>
+                                <table id="approvaltable" class="table table-hover  table-sm  font-tnr font-tnr"
+                                style="font-family: 'Times New Roman'; font-size: 1em !important;">
+                                <thead>
                                     <tr>
                                         <th>ID</th>
                                         <th>Email</th>
@@ -309,7 +307,7 @@ aria-hidden="true">
                                         <th>Role</th>
                                         <th>Status</th>
 
-                                        <th class="text-center">Actions</th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -351,18 +349,39 @@ aria-hidden="true">
 </div>
 </div>
 <script type="text/javascript">
+  $("#btn_block_modal_close").click(function() {
+    $("#mdl_block_admin").modal('hide');      
+});
+    $("#btn_block1_modal_close").click(function() {
+    $("#mdl_block_admin").modal('hide');      
+});
 
-    $("#btn_add_admin").click(function(e) {
-        $("#mdl_add_admin").modal('show');
-    });
-     $("#btn_approval_admin").click(function(e) {
-        $("#mdl_approval_admin").modal('show');
-    });
-    $('#form_add_admin').on('submit', function(e) {
-        e.preventDefault();
-        var formData = new FormData(this);
+
+  $("#btn_addadmin_modal_close").click(function() {
+    $("#mdl_add_admin").modal('hide');      
+});
+  $("#btn_approval_modal_close").click(function() {
+   $("#mdl_approval_admin").modal('hide');
+});
+  $("#btn_approvalnotif_modal_close").click(function() {
+   $("#mdl_approved_admin").modal('hide');
+});
+    $("#btn_approvalnotif1_modal_close").click(function() {
+   $("#mdl_approved_admin").modal('hide');
+});
+
+  $("#btn_add_admin").click(function(e) {
+    $("#mdl_add_admin").modal('show');
+});
+  $("#btn_approval_admin").click(function(e) {
+    $("#mdl_approval_admin").modal('show');
+});
+
+  $('#form_add_admin').on('submit', function(e) {
+    e.preventDefault();
+    var formData = new FormData(this);
         //   alert($("#form_add_pet").serialize());
-        $("#modal-loading").addClass("loader");
+        $("#modal-loading-admin").addClass("loader");
         $.ajax({
             type: 'POST',
             data: formData,
@@ -372,18 +391,22 @@ aria-hidden="true">
 
             url: '<?php echo base_url(); ?>user/addNewUser',
             success: function(data) {
-                $("#modal-loading").removeClass("loader");
-                $("#mdl_add_pet").modal('hide');
+                $("#modal-loading-admin").removeClass("loader");
+               $("#fname").val('');
+                $("#email").val('');
+                $("#password").val('');
+                $("#cpassword").val('');
+                $("#mobile").val('');
 
                 alert("Admin has been added successfully ");
-
+ $("#mdl_add_admin").modal('hide');
             }
         });
     });
 
-    $('#form_block_admin').on('submit', function(e) {
-        e.preventDefault();
-        var formData = new FormData(this);
+  $('#form_block_admin').on('submit', function(e) {
+    e.preventDefault();
+    var formData = new FormData(this);
         //   alert($("#form_add_pet").serialize());
         $("#modal-loading").addClass("loader");
         $.ajax({
@@ -403,9 +426,9 @@ aria-hidden="true">
             }
         });
     });
-    $('#form_approved_admin').on('submit', function(e) {
-        e.preventDefault();
-        var formData = new FormData(this);
+  $('#form_approved_admin').on('submit', function(e) {
+    e.preventDefault();
+    var formData = new FormData(this);
         //   alert($("#form_add_pet").serialize());
         $("#modal-loading").addClass("loader");
         $.ajax({
@@ -418,7 +441,7 @@ aria-hidden="true">
             url: '<?php echo base_url(); ?>user/adminapprove',
             success: function(data) {
                 $("#modal-loading").removeClass("loader");
-               $("#mdl_approved_admin").modal('hide');
+                $("#mdl_approved_admin").modal('hide');
                 alert("Admin has been approved successfully ");
 
             }
@@ -427,7 +450,7 @@ aria-hidden="true">
 </script>
 <script>
 
-   $(document).ready( function () {
+ $(document).ready( function () {
     var dt_admin_list = $('#admintable').DataTable({
       "bAutoWidth": false,
       "lengthMenu": [ [25, 50, 75, 100], [25, 50, 75, 100] ],
@@ -466,11 +489,12 @@ aria-hidden="true">
       dt_admin_list.ajax.reload();
   }, 300000);
         //patient_list_data();
-        $('#admintable tbody').on('click', 'td i', function () {
+        $('#admintable tbody').on('click', 'td', function () {
           var data = dt_admin_list.row( $(this).parents('tr') ).data();
 
           var dataString = 'userId='+data[0];
           document.getElementById("user").value=data[0];
+          $("#blockadminname").text(data[1]);
           $("#mdl_block_admin").modal('show');
 
           // window.location.href = "<?php echo base_url(); ?>adminblock/"+data[0];
@@ -479,7 +503,7 @@ aria-hidden="true">
     } );
 
 
-$(document).ready( function () {
+ $(document).ready( function () {
     var dt_approval_list = $('#approvaltable').DataTable({
       "bAutoWidth": false,
       "lengthMenu": [ [25, 50, 75, 100], [25, 50, 75, 100] ],
@@ -518,14 +542,14 @@ $(document).ready( function () {
       dt_approval_list.ajax.reload();
   }, 300000);
         //patient_list_data();
-        $('#approvaltable tbody').on('click', 'td i', function () {
+        $('#approvaltable tbody').on('click', 'td', function () {
           var data = dt_approval_list.row( $(this).parents('tr') ).data();
 
           var dataString = 'userId='+data[0];
           document.getElementById("approveuser").value=data[0];
-            $("#adminname").text(data[2]);
+          $("#adminname").text(data[2]);
           $("#mdl_approved_admin").modal('show');
-           $("#mdl_approval_admin").modal('hide');
+          $("#mdl_approval_admin").modal('hide');
 
 
           // window.location.href = "<?php echo base_url(); ?>adminblock/"+data[0];
