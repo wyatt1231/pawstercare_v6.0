@@ -450,21 +450,17 @@ return $query->result_array();
     }
     public function petListing()
     {
-        $query = "Select p.id,p.name,concat(a.Fname,' ', a.Lname) as 'Owner',p.type,p.Breed, COALESCE((Select (sum(r.ratings)/count(r.pet_id)) from ratings r where r.pet_id=p.id ),'Unrated')  as average_rating from pets p inner join adopter a on p.Owner=a.id where p.Status <> 'testing' order by p.createdDtm DESC";
+        $query = "Select p.id,p.name,concat(a.Fname,' ', a.Lname) as 'Owner',p.type,p.Breed, (CASE WHEN CAST(COALESCE((Select (sum(r.ratings)/count(r.pet_id)) from ratings r where r.pet_id=p.id ),'0') as DECIMAL(11,1)) < 1 THEN 'Unrated' ELSE CAST(COALESCE((Select (sum(r.ratings)/count(r.pet_id)) from ratings r where r.pet_id=p.id ),'0') as DECIMAL(11,1)) END )as average_rating from pets p inner join adopter a on p.Owner=a.id where p.Status <> 'testing'  order by p.createdDtm DESC";
         return $this->db->query($query);
     }
     public function petListHigh()
     {
-        $query = "Select p.id,p.name,concat(a.Fname,' ', a.Lname) as 'Owner',p.type,p.Breed, COALESCE((Select (sum(r.ratings)/count(r.pet_id)) from ratings r where r.pet_id=p.id ),'Unrated')  as average_rating from pets p inner join adopter a on p.Owner=a.id where p.Status <> 'testing' 
-        and (COALESCE((Select (sum(r.ratings)/count(r.pet_id)) from ratings r where r.pet_id=p.id ),'Unrated') )>=3 and (COALESCE((Select (sum(r.ratings)/count(r.pet_id)) from ratings r where r.pet_id=p.id ),'Unrated') ) != 'Unrated'
-        order by p.createdDtm DESC";
+        $query = "Select p.id,p.name,concat(a.Fname,' ', a.Lname) as 'Owner',p.type,p.Breed, (CASE WHEN CAST(COALESCE((Select (sum(r.ratings)/count(r.pet_id)) from ratings r where r.pet_id=p.id ),'0') as DECIMAL(11,1)) < 1 THEN 'Unrated' ELSE CAST(COALESCE((Select (sum(r.ratings)/count(r.pet_id)) from ratings r where r.pet_id=p.id ),'0') as DECIMAL(11,1)) END )as average_rating from pets p inner join adopter a on p.Owner=a.id where p.Status <> 'testing' and (COALESCE((Select (sum(r.ratings)/count(r.pet_id)) from ratings r where r.pet_id=p.id ),'Unrated') ) >= 3  order by p.createdDtm DESC";
         return $this->db->query($query);
     }
     public function petListLow()
     {
-        $query = "Select p.id,p.name,concat(a.Fname,' ', a.Lname) as 'Owner',p.type,p.Breed, COALESCE((Select (sum(r.ratings)/count(r.pet_id)) from ratings r where r.pet_id=p.id ),'Unrated')  as average_rating from pets p inner join adopter a on p.Owner=a.id where p.Status <> 'testing' 
-        and (COALESCE((Select (sum(r.ratings)/count(r.pet_id)) from ratings r where r.pet_id=p.id ),'Unrated') )<3 and (COALESCE((Select (sum(r.ratings)/count(r.pet_id)) from ratings r where r.pet_id=p.id ),'Unrated') ) != 'Unrated'
-        order by p.createdDtm DESC";
+        $query = "Select p.id,p.name,concat(a.Fname,' ', a.Lname) as 'Owner',p.type,p.Breed, (CASE WHEN CAST(COALESCE((Select (sum(r.ratings)/count(r.pet_id)) from ratings r where r.pet_id=p.id ),'0') as DECIMAL(11,1)) < 1 THEN 'Unrated' ELSE CAST(COALESCE((Select (sum(r.ratings)/count(r.pet_id)) from ratings r where r.pet_id=p.id ),'0') as DECIMAL(11,1)) END )as average_rating from pets p inner join adopter a on p.Owner=a.id where p.Status <> 'testing' and (COALESCE((Select (sum(r.ratings)/count(r.pet_id)) from ratings r where r.pet_id=p.id ),'Unrated') ) <3 and (COALESCE((Select (sum(r.ratings)/count(r.pet_id)) from ratings r where r.pet_id=p.id ),'Unrated') ) > 0 order by p.createdDtm DESC";
         return $this->db->query($query);
     }
     public function petlogs($userId)
