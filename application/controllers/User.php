@@ -420,7 +420,7 @@ class User extends BaseController
     function chart()
     {
         $rows = '';
-        $query = "Select p.name,CAST( (sum(r.ratings)/count(r.pet_id)) AS DECIMAL(11,1)) as 'average',count(r.pet_id) as 'count' from ratings r inner join pets p on p.id=r.pet_id inner join adopter a on a.id=p.Owner where p.Owner='1' GROUP by r.pet_id HAVING CAST( (sum(r.ratings)/count(r.pet_id)) AS DECIMAL(11,1)) > 3  order by (CAST( (sum(r.ratings)/count(r.pet_id)) AS DECIMAL(11,1))) desc ";
+        $query = "Select p.name,CAST( (sum(r.ratings)/count(r.pet_id)) AS DECIMAL(11,1)) as 'average',count(r.pet_id) as 'count' from ratings r inner join pets p on p.id=r.pet_id inner join adopter a on a.id=p.Owner where p.Owner='1' GROUP by r.pet_id HAVING CAST( (sum(r.ratings)/count(r.pet_id)) AS DECIMAL(11,1)) < 2.5  order by (CAST( (sum(r.ratings)/count(r.pet_id)) AS DECIMAL(11,1))) desc ";
        
         //Select p.name,CAST( (sum(r.ratings)/count(r.pet_id)) AS DECIMAL(11,1)) as average, count(r.pet_id) as rate_count from ratings r inner join pets p on p.id=r.pet_id inner join adopter a on a.id=p.Owner where p.Owner='1' GROUP by r.pet_id
         $result = $this->db->query($query);
@@ -2672,7 +2672,7 @@ WHERE DATE_FORMAT(posted_date, '%Y') = '2020'
     {
         $adoption_id = $this->input->post('adoption_id');
         $adoption_status = $this->input->post('adoption_status');
-        
+        $date_today = date('Y/m/d H:i:s');
         if ($adoption_id && $adoption_status) {
             $userdata = array(
                 "Status" => $adoption_status,
@@ -2681,7 +2681,7 @@ WHERE DATE_FORMAT(posted_date, '%Y') = '2020'
 
 
             $result = $this->user_model->update_adoption_status($userdata, $adoption_id);
-            $result = $this->user_model->update_pet_status($userdata, $adoption_id);
+            $result = $this->user_model->update_pet_status($adoption_status, $adoption_id);
             if ($result) {
                 $response["success"] = true;
             }else{

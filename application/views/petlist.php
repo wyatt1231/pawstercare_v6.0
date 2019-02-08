@@ -211,6 +211,9 @@
                                     <div>
                                         <h3 id="selected_pet_rating"> </h3>
                                     </div>
+                                    <div>
+                                        <h3 id="selected_pet_rating_desc"> </h3>
+                                    </div>
                                 </div>
 
 
@@ -431,6 +434,7 @@ $(document).ready(function() {
         $("#mdl_edit_pet").modal('show');
         $("#edit_pet_image_main").empty();
         $("#selected_pet_rating").empty();
+        $("#selected_pet_rating_desc").empty();
         $("#select_edit_pet_age").val('');
         $("#select_edit_pet_owner").val('');
         $("#select_edit_pet_type").val('');
@@ -442,7 +446,18 @@ $(document).ready(function() {
         $("#txt_edit_pet_owner").val('');
         $("#txt_edit_pet_id").val('');
 
-        $("#selected_pet_rating").append(data[5] + ' Average Rating');
+        $("#selected_pet_rating").append('The average rating is '+data[5]);
+
+        if(data[5] >= 1 && data[5] < 2 ){
+            $("#selected_pet_rating_desc").append('<b>Exceptionally Poor</b>');
+        }else if(data[5] >= 2 &&  data[5] < 3 ){
+            $("#selected_pet_rating_desc").append('<b>Needs Improvement</b>');
+        }else if(data[5] >= 3 &&  data[5] < 4 ){
+            $("#selected_pet_rating_desc").append('<b>Very Good</b>');
+        }else if(data[5] >= 4 &&  data[5] < 5 ){
+            $("#selected_pet_rating_desc").append('<b>Excellent</b>');
+        }
+
         $("#edit_pet_image_main").append("<div class='loader'> </div>");
         $.ajax({
             type: "POST",
@@ -453,8 +468,8 @@ $(document).ready(function() {
                 console.log(response);
                 $("#edit_pet_image_main").empty();
                 $("#edit_pet_image_main").append(
-                    '<img src="<?php echo base_url(); ?>pets/' + response.data[0][1] +
-                    '" style="margin-top: 30px !important; margin-bottom: 20px !important;" id="pet_img1" name="pet_img1" width="60%" height="60%">'
+                    '<img class="img-circle" src="<?php echo base_url(); ?>pets/' + response.data[0][1] +
+                    '" style="margin-top: 30px !important; margin-bottom: 20px !important;" id="pet_img1" name="pet_img1" width="200px" height="200px">'
                 );
                 $("#select_edit_pet_age").val(response.data[0][7]);
                 $("#select_edit_pet_owner").val(response.data[0][9]);

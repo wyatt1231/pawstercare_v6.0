@@ -947,9 +947,9 @@ return $query->result_array();
          }
     }
 
-    public function update_pet_status($data, $adoption_id)
+    public function update_pet_status($adoption_status,$adoption_id)
     {
-        $query = "Update pets set Status='Approved',approved_date=CURRENT_DATE  where id= (Select  ap.pet_id from adoptpet ap where ap.id=$adoption_id)";
+        $query = "Update pets set Status='$adoption_status',approved_date=CURRENT_DATE  where id= (Select  ap.pet_id from adoptpet ap where ap.id=$adoption_id)";
          if ($this->db->query($query)) {
             return true;
          }else{
@@ -1156,7 +1156,7 @@ return $query->result_array();
     
     public function data_dashboard()
     {
-        $query = "Select t1.pc,t2.pets,t3.pendingusers,t4.pendingadoption from (Select count(*) as pc from pet_cruelty pc where pc.Remarks='Pending' or  pc.Remarks='For Verification') as t1, (Select count(*) as pets from pets p inner join adopter a on a.id=p.owner where p.Status <> 'testing') as t2, (Select count(*) as pendingusers from adopter a where a.Status='Not Screened by The City Vet Office') as t3, (Select count(*) as pendingadoption from adoptpet ap inner join pets p on p.id=ap.pet_id inner join adopter a on a.id=ap.adopter_id where ap.Status='Pending' and p.Owner='1') as t4";
+        $query = "Select t1.pc,t2.pets,t3.pendingusers,t4.pendingadoption from (Select count(*) as pc from pet_cruelty pc where pc.Remarks='Pending' or pc.Remarks='For Verification') as t1, (Select count(*) as pets from pets p inner join adopter a on a.id=p.owner where p.Status <> 'testing') as t2, (Select count(*) as pendingusers from adopter a where a.Status='Not Screened by The City Vet Office') as t3, (Select count(*) as pendingadoption from adoptpet ap inner join pets p on p.id=ap.pet_id inner join adopter a on a.id=ap.adopter_id where p.Status='Pending' and ap.Status='Pending' and p.Owner='1') as t4";
         return $this->db->query($query)->result();
     }
 
