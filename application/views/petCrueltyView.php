@@ -19,7 +19,7 @@ $email=$userInfo->Email;
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      <i class="fa fa-users"></i> Cruelty Posts
+      <i class="fa fa-users"></i> Pet Cruelty Report
 
     </h1>
   </section>
@@ -237,7 +237,7 @@ $email=$userInfo->Email;
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Pet Cruelty Videos</h4>
+        <h4 class="modal-title">Pet Cruelty Video</h4>
       </div>
       <div class="modal-body">
 
@@ -286,7 +286,7 @@ $email=$userInfo->Email;
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Pet Cruelty Update Logs</h4>
+        <h4 class="modal-title">Logs in This Pet Cruelty Report.</h4>
       </div>
       <div class="modal-body">
 
@@ -338,7 +338,7 @@ $email=$userInfo->Email;
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="done">&times;</button>
-          <h4 class="modal-title">What are the action taken for this pet cruelty report? </h4>
+          <h4 class="modal-title">What are the actions taken in this pet cruelty report? </h4>
           <select class="form-control required" id="status" name="status">
             <option value="For Verification" <?php if("For Verification" =="For Verification"){ echo "selected";}   ?>>For Verification</option>
 
