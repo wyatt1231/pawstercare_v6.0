@@ -2,7 +2,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            <i class="fa fa-users"></i> User Management
+            <i class="fa fa-user"></i> User Management
         </h1>
     </section>
     <section class="content">
@@ -80,7 +80,7 @@
         <div class="modal-content">
             <section class="content-header">
                 <h1 style="width: 100%;">
-                    <i class="fa fa-users "></i> User Information
+                    <i class="fa fa-user "></i> User Information
                     <i class="fa fa-close" id="btn_user_modal_close"
                         style="color: red; float: right; list-style: none;"> </i>
                     <div id="modal-loading">

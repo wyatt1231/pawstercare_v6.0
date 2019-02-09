@@ -14,12 +14,42 @@ $ofaddress = $userInfo->address;
 $ofname = $userInfo->offender_name;
 $email=$userInfo->Email;
 ?>
+<style>
+table {
+    border: 0px;
+    border-collapse: collapse;
+    border-spacing: 0px;
+}
 
+
+.error {
+    color: red;
+    font-weight: normal;
+}
+
+/* Important part */
+.modal-dialog {
+    overflow-y: initial !important
+}
+
+.modal-body {
+    height: 150px;
+    overflow-y: auto;
+}
+.modal-body-custom {
+    height: 500px;
+    overflow-y: auto;
+}
+</style>
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
+<<<<<<< HEAD
       <i class="fa fa-users"></i> Pet Cruelty Report
+=======
+      <i class="fa fa-flag"></i> Cruelty Posts
+>>>>>>> 46e2998fb1f9c29679395381ac1fc2f443dc0bf4
 
     </h1>
   </section>
@@ -69,10 +99,10 @@ $email=$userInfo->Email;
                     <div class="col-md-3">    
                     </div>
                            <div class="col-md-3">    
-  <a   class="btn btn-md btn-app "  data-toggle="modal" data-target="#imgs"   type="button" ><i class="fa  fa-video-camera"></i>Show Images</a>
+  <a class="btn btn-md btn-app "  data-toggle="modal" data-target="#imgs"   type="button" ><i class="fa  fa-video-camera"></i>Show Images</a>
     </div>
   <div class="col-md-3">    
-    <a   class="btn btn-md btn-app"  data-toggle="modal" data-target="#vids"   type="button" ><i class="fa fa-camera"></i>Show Videos</a>
+    <a class="btn btn-md btn-app"  data-toggle="modal" data-target="#vids"   type="button" ><i class="fa fa-camera"></i>Show Videos</a>
   </div>
     <div class="col-md-3">    
                     </div>
@@ -192,7 +222,7 @@ $email=$userInfo->Email;
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Pet Cruelty Images</h4>
       </div>
-      <div class="modal-body">
+      <div class="modal-body-custom">
 
         <div class="col-md-12" > 
           <div class="form-group">
@@ -239,7 +269,7 @@ $email=$userInfo->Email;
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Pet Cruelty Video</h4>
       </div>
-      <div class="modal-body">
+      <div class="modal-body-custom">
 
         <div class="col-md-12" > 
           <div class="form-group">
@@ -288,7 +318,7 @@ $email=$userInfo->Email;
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Logs in This Pet Cruelty Report.</h4>
       </div>
-      <div class="modal-body">
+      <div class="modal-body-custom">
 
         <div class="col-md-12" > 
           <div class="form-group">
@@ -302,7 +332,6 @@ $email=$userInfo->Email;
               <div class="well"  style="display: block;line-height: 150%;" >
                <H4><?php echo $rl->updates; ?></H4>
                <h6>Date: <?php echo $rl->date; ?></h6>
-               <h6 align="right">Officer In Charge - <?php echo $rl->OIC ?></h6>
              </div>
 
              <?php
@@ -332,27 +361,31 @@ $email=$userInfo->Email;
 
   <!-- Modal -->
   <div id="done" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-
+    <div class="modal-dialog modal-md">
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
+<<<<<<< HEAD
           <button type="button" class="close" data-dismiss="done">&times;</button>
           <h4 class="modal-title">What are the actions taken in this pet cruelty report? </h4>
+=======
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">What are the actions taken for this pet cruelty report? </h4>
+>>>>>>> 46e2998fb1f9c29679395381ac1fc2f443dc0bf4
           <select class="form-control required" id="status" name="status">
-            <option value="For Verification" <?php if("For Verification" =="For Verification"){ echo "selected";}   ?>>For Verification</option>
+            <option class="form-control required"  value="For Verification" <?php if("For Verification" =="For Verification"){ echo "selected";}   ?>>For Verification</option>
 
-            <option value="Completed"<?php if("Completed" =="Completed"){ echo "selected";}   ?>>Completed</option>
+            <option class="form-control required"  value="Completed"<?php if("Completed" =="Completed"){ echo "selected";}   ?>>Completed</option>
             
           </select>
         </div>
         <div class="modal-body">
 
-          <textarea rows="30"  type="text" name="reasons" class="form-control"  id="reasons" required></textarea>
+          <textarea rows="5"  type="text" name="reasons" class="form-control"  id="reasons" required></textarea>
         </div>
         <div class="modal-footer">
 
-          <button type="submit" class="btn btn-default">Submit</button>
+          <button type="submit" class="btn btn-info">Submit <i class="fa fa-save"></i></button>
           <input type="hidden" name="petid" id="petid" value="<?php echo $userInfo->pet_id; ?>">
           <input type="hidden" name="name" id="name" value="<?php echo $name; ?>">
         </div>
@@ -385,8 +418,12 @@ $email=$userInfo->Email;
           <input type="hidden" name="petid" id="petid" value="<?php echo $userInfo->pet_id; ?>">
 
         </div>
-      </div>
-
-    </div>
-  </div>
+</div>
+</div>
+</div>
 </form>
+
+
+
+
+

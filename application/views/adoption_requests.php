@@ -1,7 +1,7 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            <i class="fa fa-users"></i> Adoption Request Management
+            <i class="fa fa-list-alt"></i> Adoption Request Management
         </h1>
     </section>
     <section class="content">

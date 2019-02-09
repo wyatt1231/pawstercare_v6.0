@@ -1,7 +1,7 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            <i class="fa fa-users"></i> Pet Management
+            <i class="fa fa-paw"></i> Pet Management
         </h1>
     </section>
     <section class="content">
@@ -62,7 +62,7 @@
                 <section class="content-header">
 
                     <h1 style="width: 100%;">
-                        <i class="fa fa-users "></i> Pet Adding Form
+                        <i class="fa fa-paw "></i> Pet Adding Form
                         <i class="fa fa-close" id="btn_add_modal_close"
                             style="color: red; float: right; list-style: none;"> </i>
                         <div id="modal-loading">
@@ -193,7 +193,7 @@
             <div class="modal-content">
                 <section class="content-header">
                     <h1 style="width: 100%;">
-                        <i class="fa fa-users "></i> Pet Information and Timeline
+                        <i class="fa fa-paw "></i> Pet Information and Timeline
                         <i class="fa fa-close" id="btn_edit_modal_close"
                             style="color: red; float: right; list-style: none;"> </i>
                         <div id="modal-loading">

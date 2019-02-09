@@ -101,6 +101,7 @@
 </div>
 
 <script type="text/javascript">
+
 $(document).ready(function() {
     $.ajax({
         url: '<?php echo base_url(); ?>user/get_data_dashboard', //controller/method
@@ -121,6 +122,7 @@ $(document).ready(function() {
         }
     });
     $(function() {
+
         var jsonData = $.getJSON("<?php echo base_url('user/chart');?>",
             function(jsonData) {
                 console.log(jsonData);
@@ -136,13 +138,14 @@ $(document).ready(function() {
                     ymin: 0,
                     // A list of names of data record attributes that contain y-values.
                     ykeys: ['average'],
-                    hideHover: 'auto',
+                    hideHover: true,
                     parseTime: false,
                     gridTextSize: 16,
                     gridTextColor: 'black',
                     verticalGrid: true,
                     gridTextFamily: 'Times New Roman',
                     resize: true,
+                    horizontal: true,
                     // Labels for the ykeys -- will be displayed when you hover over the
                     // chart.
                     labels: ['Average Rating '],
