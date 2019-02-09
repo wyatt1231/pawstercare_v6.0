@@ -67,7 +67,7 @@
                     <div class="icon">
                         <i class="ion ion-person-add"></i>
                     </div>
-                    <a href="<?php echo base_url(); ?>adopter" class="small-box-footer font-tnr">More info <i
+                    <a href="<?php echo base_url(); ?>adoptionrequests" class="small-box-footer font-tnr">More info <i
                             class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div><!-- ./col -->
@@ -81,12 +81,7 @@
     padding: 5; background-color:#A9A9A9;">
         <div class="box box-primary box-solid">
             <div class="box-header with-border">
-                <h3 class="box-title font-tnr" >Pets with Highest Average Rating (Above 3.0)</h3>
-                <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title=""
-                        data-original-title="Collapse">
-                        <i class="fa fa-minus"></i></button>
-                </div>
+                <h3 class="box-title font-tnr">Pets with Lowest Average Rating (Below 2.5)</h3>
             </div>
             <div class="box-body" style="">
                 <div>
@@ -99,9 +94,35 @@
     </section>
 
 </div>
+<style>
+.morris-hover {
+    position: absolute;
+    z-index: 1000;
+}
+
+.morris-hover.morris-default-style {
+    border-radius: 10px;
+    padding: 6px;
+    color: #666;
+    background: rgba(255, 255, 255, 0.8);
+    border: solid 2px rgba(230, 230, 230, 0.8);
+    font-family: sans-serif;
+    font-size: 12px;
+    text-align: center;
+}
+
+.morris-hover.morris-default-style .morris-hover-row-label {
+    font-weight: bold;
+    margin: 0.25em 0;
+}
+
+.morris-hover.morris-default-style .morris-hover-point {
+    white-space: nowrap;
+    margin: 0.1em 0;
+}
+</style>
 
 <script type="text/javascript">
-
 $(document).ready(function() {
     $.ajax({
         url: '<?php echo base_url(); ?>user/get_data_dashboard', //controller/method
@@ -145,9 +166,8 @@ $(document).ready(function() {
                     verticalGrid: true,
                     gridTextFamily: 'Times New Roman',
                     resize: true,
-                    horizontal: true,
-                    // Labels for the ykeys -- will be displayed when you hover over the
-                    // chart.
+                    horizontal: true,   
+                    stacked: true,
                     labels: ['Average Rating '],
                     xLabelAngle: 60
                 });
