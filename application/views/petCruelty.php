@@ -3,7 +3,6 @@
   <section class="content-header">
     <h1>
       <i class="fa fa-flag"></i> Pet Cruelty Management
-      
     </h1>
   </section>
 

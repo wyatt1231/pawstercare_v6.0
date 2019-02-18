@@ -423,8 +423,57 @@ return $query->result_array();
     }
 
     // END MARC CHANGES
+  public function chart_pets_data($from = null,$to = null)
+    {
 
+              $rows = '';
 
+        $from =$_GET["from"];
+        $to =$_GET["to"];
+
+     
+        
+        if ($from && $to) {
+            $from1 = date("Y-m-d", strtotime($from));
+            $to1 = date("Y-m-d", strtotime($to));
+            $query = "Select p.type,p.Breed,CAST(((count(p.Breed)/(Select count(*) from pets where Status = 'Approved'))*100) as DECIMAL(11,1)) as 'pet_count' from pets p where p.Status = 'Approved' and (p.approved_date BETWEEN '$from1' and '$to1') GROUP By p.Breed";
+        }else{
+            $query = "Select p.type,p.Breed,CAST(((count(p.Breed)/(Select count(*) from pets where Status = 'Approved'))*100) as DECIMAL(11,1)) as 'pet_count' from pets p where p.Status = 'Approved' GROUP By p.Breed";
+        }
+       
+ return $this->db->query($query);
+    }
+    public function chart_adopter_data($from = null,$to = null)
+    {
+            $rows = '';
+
+        $from =$_GET["from"];
+        $to =$_GET["to"];
+        if ($from && $to) {
+        $from = date("Y-m-d", strtotime($from));
+        $to = date("Y-m-d", strtotime($to));
+        $query = "select (CASE WHEN a.Status = 'Approved by City Vet' THEN 'Screened' WHEN a.Status = 'Not Screened by The City Vet Office' THEN 'Unscreened' ELSE 'Blocked' END) as 'Status' , CAST(((count(a.Status)/(select count(*) from adopter where Status != 'n/a'))*100) as DECIMAL(11,1)) as 'status_count' from adopter a where (a.status_update BETWEEN '$from' and '$to') and a.Status != 'n/a' GROUP by a.Status";
+    }else{
+        $query = "select (CASE WHEN a.Status = 'Approved by City Vet' THEN 'Screened' WHEN a.Status = 'Not Screened by The City Vet Office' THEN 'Unscreened' ELSE 'Blocked' END) as 'Status' , CAST(((count(a.Status)/(select count(*) from adopter where Status != 'n/a'))*100) as DECIMAL(11,1)) as 'status_count' from adopter a where a.Status != 'n/a' GROUP by a.Status";
+    }
+     return $this->db->query($query);
+    }
+public function chart_petcruelty_data($from = null,$to = null)
+{
+    $rows = '';
+
+    $from =$_GET["from"];
+    $to =$_GET["to"];
+
+    if ($from && $to) {
+        $from = date("Y-m-d", strtotime($from));
+        $to = date("Y-m-d", strtotime($to));
+        $query = "Select (CASE WHEN pc.category = 'Maltreated' THEN 'Maltreated' WHEN pc.category = 'Tortured' THEN 'Tortured' WHEN pc.category = 'Neglect to provide adequate care' THEN 'Inadequate care' WHEN pc.category = 'Neglect to provide adequate sustenance or shelter' THEN 'Inadequate sustenance' WHEN pc.category = 'Illegal use of pets in research or experiments' THEN 'Illegal Experiments' WHEN pc.category = 'Killing' THEN 'Killing' ELSE 'Others' END) as 'category',CAST(((COUNT(pc.category)/(Select count(*) from pet_cruelty where Remarks = 'Completed')) * 100) as DECIMAL(11,1)) as 'pc_count' from pet_cruelty pc where pc.Remarks= 'Completed' and (pc.remarks_update_date >= '$from' and pc.remarks_update_date <= '$to') GROUP by pc.category";
+    }else{
+        $query = "Select (CASE WHEN pc.category = 'Maltreated' THEN 'Maltreated' WHEN pc.category = 'Tortured' THEN 'Tortured' WHEN pc.category = 'Neglect to provide adequate care' THEN 'Inadequate care' WHEN pc.category = 'Neglect to provide adequate sustenance or shelter' THEN 'Inadequate sustenance' WHEN pc.category = 'Illegal use of pets in research or experiments' THEN 'Illegal Experiments' WHEN pc.category = 'Killing' THEN 'Killing' ELSE 'Others' END) as 'category',CAST(((COUNT(pc.category)/(Select count(*) from pet_cruelty where Remarks = 'Completed')) * 100) as DECIMAL(11,1)) as 'pc_count' from pet_cruelty pc where pc.Remarks= 'Completed' GROUP by pc.category";
+    }
+     return $this->db->query($query);
+}
     public function adoption_requests_data()
     {
         $query = "select ap.id,p.name,concat(a.Fname,' ' , a.Lname) as adopter_name,ap.timestamp,ap.Status from adoptpet ap inner join pets p on p.id = ap.pet_id inner join adopter a on a.id = ap.adopter_id where p.Owner = 1";

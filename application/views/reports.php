@@ -47,7 +47,7 @@
                                 </div>
                                 <div class="row" style="margin-top: 15px !important;">
                                 <button align="center" class="btn btn-primary text-center" type="submit"
-                                    id="submit_filter" style="display: block; margin: auto;"><i class="fa fa-filter">
+                                    id="submit_filter" name ="submit_filter" style="display: block; margin: auto;"><i class="fa fa-filter">
                                     </i> Filter Results </button>
                                 </div>
                               
@@ -74,6 +74,26 @@
                                     <div>
                                         <div id="myfirstchart" style="height: 550px;" class="font-tnr"></div>
                                     </div>
+                                     <div class="box-body ">
+                                <table id="petstable" name="petstable" class="table table-hover  table-sm  font-tnr font-tnr"
+                                style="font-family: 'Times New Roman'; font-size: 1em !important;">
+                                <thead>
+                                    <tr>
+                                        
+                                        
+                                        <th name='col1' id="col1"></th>
+                                        <th  name='col2' id="col2"></th>
+                                        <th  name='col3' id="col3"></th>
+
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                
+                            </tbody>
+                        </table>
+
+                    </div>
                                 </div>
                             </div>
                         </div>
@@ -220,6 +240,9 @@
                             });
 
                         });
+
+
+
                 } else if (filter2 == 'users') {
                     $("#title_header").empty();
                     $("#title_header").append('Managed Adopters By Status');
@@ -276,4 +299,216 @@
             
         });
     });
-    </script>
+  
+
+</script>
+<script type="text/javascript">
+
+     var dt_adopter_list;
+    var date_from = $("#date_from").val();
+    var date_to = $("#date_to").val();
+
+   
+
+ $(document).ready( function () {
+
+    displaytable();
+
+      function displaytable() {
+        $('#col1').text("type");
+        $('#col2').text("breed");
+        $('#col3').text("Count");
+ dt_reported_list = $('#petstable').DataTable({
+      "bAutoWidth": false,
+      "lengthMenu": [ [25, 50, 75, 100], [25, 50, 75, 100] ],
+
+      "processing": true,
+      stateSave: true,
+      colReorder: false,
+      "ajax": {
+        xhr: function()
+        {
+          var xhr = new window.XMLHttpRequest();
+                                                        //Upload progress
+                                                        xhr.upload.addEventListener("progress", function(evt){
+                                                          if (evt.lengthComputable) {
+                                                            var percentComplete = evt.loaded / evt.total;
+                                                            //Do something with upload progress
+                                                            console.log(percentComplete);
+                                                          }
+                                                        }, false);
+                                                        //Download progress
+                                                        xhr.addEventListener("progress", function(evt){
+                                                          if (evt.lengthComputable) {
+                                                            var percentComplete = evt.loaded / evt.total;
+                                                            //Do something with download progress
+                                                            console.log(percentComplete);
+
+                                                          }
+                                                        }, false);
+                                                        return xhr;
+                                                      },
+url : "<?php echo base_url().'user/chart_pet_data?from=" + date_from + "&to=" + date_to + "'?>",
+                                                      type : 'GET'
+                                                    },  
+                                                  });
+
+        //patient_list_data();
+        $('#petstable tbody').on('click', 'td', function () {
+          
+        });
+    }
+     
+$("#submit_filter").click(function(e) {
+
+        e.preventDefault();
+    var date_from = $("#date_from").val();
+    var date_to = $("#date_to").val();
+
+      /*  $("#loading").append("<div class='loader'> </div>");*/
+   var filter2 = $("#filter2").val();
+if (filter2 == 'adoption') {
+       $('#col1').text("type");
+        $('#col2').text("breed");
+        $('#col3').text("Count");
+ $('#petstable').DataTable().clear().destroy();
+         dt_reported_list = $('#petstable').DataTable({
+      "bAutoWidth": false,
+      "lengthMenu": [ [25, 50, 75, 100], [25, 50, 75, 100] ],
+
+      "processing": true,
+      stateSave: true,
+      colReorder: false,
+      "ajax": {
+        xhr: function()
+        {
+          var xhr = new window.XMLHttpRequest();
+                                                        //Upload progress
+                                                        xhr.upload.addEventListener("progress", function(evt){
+                                                          if (evt.lengthComputable) {
+                                                            var percentComplete = evt.loaded / evt.total;
+                                                            //Do something with upload progress
+                                                            console.log(percentComplete);
+                                                          }
+                                                        }, false);
+                                                        //Download progress
+                                                        xhr.addEventListener("progress", function(evt){
+                                                          if (evt.lengthComputable) {
+                                                            var percentComplete = evt.loaded / evt.total;
+                                                            //Do something with download progress
+                                                            console.log(percentComplete);
+                                                          }
+                                                        }, false);
+                                                        return xhr;
+                                                      },
+  url : "<?php echo base_url().'user/chart_pet_data?from=" + date_from + "&to=" + date_to + "'?>",
+                                                      type : 'GET'
+                                                    },  
+                                                  });
+
+  
+        //patient_list_data();
+        $('#petstable tbody').on('click', 'td', function () {
+         
+        });
+      }
+else if (filter2 == 'users') {
+       $('#col1').text("Status");
+        $('#col2').text("Count");
+        $('#col3').hide();
+ $('#petstable').DataTable().clear().destroy();
+         dt_reported_list = $('#petstable').DataTable({
+      "bAutoWidth": false,
+      "lengthMenu": [ [25, 50, 75, 100], [25, 50, 75, 100] ],
+
+      "processing": true,
+      stateSave: true,
+      colReorder: false,
+      "ajax": {
+        xhr: function()
+        {
+          var xhr = new window.XMLHttpRequest();
+                                                        //Upload progress
+                                                        xhr.upload.addEventListener("progress", function(evt){
+                                                          if (evt.lengthComputable) {
+                                                            var percentComplete = evt.loaded / evt.total;
+                                                            //Do something with upload progress
+                                                            console.log(percentComplete);
+                                                          }
+                                                        }, false);
+                                                        //Download progress
+                                                        xhr.addEventListener("progress", function(evt){
+                                                          if (evt.lengthComputable) {
+                                                            var percentComplete = evt.loaded / evt.total;
+                                                            //Do something with download progress
+                                                            console.log(percentComplete);
+                                                          }
+                                                        }, false);
+                                                        return xhr;
+                                                      },
+  url : "<?php echo base_url().'user/chart_adopters_data?from=" + date_from + "&to=" + date_to + "'?>",
+                                                      type : 'GET'
+                                                    },  
+                                                  });
+
+  
+        //patient_list_data();
+        $('#petstable tbody').on('click', 'td', function () {
+         
+        });
+      }else {
+       $('#col1').text("Category");
+        $('#col2').text("Count");
+        $('#col3').hide();
+ $('#petstable').DataTable().clear().destroy();
+         dt_reported_list = $('#petstable').DataTable({
+      "bAutoWidth": false,
+      "lengthMenu": [ [25, 50, 75, 100], [25, 50, 75, 100] ],
+
+      "processing": true,
+      stateSave: true,
+      colReorder: false,
+      "ajax": {
+        xhr: function()
+        {
+          var xhr = new window.XMLHttpRequest();
+                                                        //Upload progress
+                                                        xhr.upload.addEventListener("progress", function(evt){
+                                                          if (evt.lengthComputable) {
+                                                            var percentComplete = evt.loaded / evt.total;
+                                                            //Do something with upload progress
+                                                            console.log(percentComplete);
+                                                          }
+                                                        }, false);
+                                                        //Download progress
+                                                        xhr.addEventListener("progress", function(evt){
+                                                          if (evt.lengthComputable) {
+                                                            var percentComplete = evt.loaded / evt.total;
+                                                            //Do something with download progress
+                                                            console.log(percentComplete);
+                                                          }
+                                                        }, false);
+                                                        return xhr;
+                                                      },
+  url : "<?php echo base_url().'user/chart_petcruelty_data?from=" + date_from + "&to=" + date_to + "'?>",
+                                                      type : 'GET'
+                                                    },  
+                                                  });
+
+  
+        //patient_list_data();
+        $('#petstable tbody').on('click', 'td', function () {
+         
+        });
+      }
+
+
+
+
+
+  });
+
+  } );
+
+
+</script>
