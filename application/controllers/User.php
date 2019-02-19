@@ -471,7 +471,7 @@ class User extends BaseController
     $data = array();
     foreach ($report->result() as $r) {
         $data[] = array(
-            $r->type,
+           
             $r->Breed,
             $r->pet_count ,
 
