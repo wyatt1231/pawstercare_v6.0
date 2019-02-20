@@ -45,11 +45,7 @@ table {
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-<<<<<<< HEAD
-      <i class="fa fa-users"></i> Pet Cruelty Report
-=======
       <i class="fa fa-flag"></i> Cruelty Posts
->>>>>>> 46e2998fb1f9c29679395381ac1fc2f443dc0bf4
 
     </h1>
   </section>
