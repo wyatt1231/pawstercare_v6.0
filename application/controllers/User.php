@@ -577,7 +577,7 @@ function chart_petcruelty_data()
         $data[] = array(
             $r->category,
             $r->pc_count,
-            $r->pc_count,
+            $r->num_count,
 
         );
     }
