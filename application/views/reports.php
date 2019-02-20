@@ -83,7 +83,7 @@
                                         
                                         <th name='col1' id="col1"></th>
                                         <th  name='col2' id="col2"></th>
-                                       
+                                        <th  name='col3' id="col3"></th>
 
                                         
                                     </tr>
@@ -317,10 +317,10 @@
       function displaytable() {
         $('#col1').text("Breed");
         $('#col2').text("Percentage");
- dt_reported_list = $('#petstable').DataTable({
+        $('#col3').text("Count");
+      dt_reported_list = $('#petstable').DataTable({
       "bAutoWidth": false,
       "lengthMenu": [ [25, 50, 75, 100], [25, 50, 75, 100] ],
-
       "processing": true,
       stateSave: true,
       colReorder: false,
@@ -369,7 +369,7 @@ $("#submit_filter").click(function(e) {
 if (filter2 == 'adoption') {
        $('#col1').text("Breed");
         $('#col2').text("Percentage");
-  
+        $('#col3').text("Count");
  $('#petstable').DataTable().clear().destroy();
          dt_reported_list = $('#petstable').DataTable({
       "bAutoWidth": false,
@@ -414,6 +414,7 @@ if (filter2 == 'adoption') {
 else if (filter2 == 'users') {
        $('#col1').text("Status");
         $('#col2').text("Percentage");
+        $('#col3').text("Count");
  $('#petstable').DataTable().clear().destroy();
          dt_reported_list = $('#petstable').DataTable({
       "bAutoWidth": false,
@@ -457,6 +458,7 @@ else if (filter2 == 'users') {
       }else {
        $('#col1').text("Category");
         $('#col2').text("Percentage");
+        $('#col3').text("Count");
  $('#petstable').DataTable().clear().destroy();
          dt_reported_list = $('#petstable').DataTable({
       "bAutoWidth": false,

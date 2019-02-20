@@ -425,20 +425,15 @@ return $query->result_array();
     // END MARC CHANGES
   public function chart_pets_data($from = null,$to = null)
     {
-
               $rows = '';
-
         $from =$_GET["from"];
         $to =$_GET["to"];
-
-     
-        
         if ($from && $to) {
             $from1 = date("Y-m-d", strtotime($from));
             $to1 = date("Y-m-d", strtotime($to));
-            $query = "Select p.type,p.Breed,CAST(((count(p.Breed)/(Select count(*) from pets where Status = 'Approved'))*100) as DECIMAL(11,1)) as 'pet_count' from pets p where p.Status = 'Approved' and (p.approved_date BETWEEN '$from1' and '$to1') GROUP By p.Breed";
+            $query = "SELECT p.type,p.Breed,CONCAT(CAST(((COUNT(p.Breed)/(SELECT COUNT(*) FROM pets WHERE STATUS = 'Approved'))*100) AS DECIMAL(11,1)),'%') AS 'pet_count',CONCAT(COUNT(p.`Breed`), ' of ', (SELECT COUNT(*) FROM pets WHERE STATUS = 'Approved')) AS num_count  FROM pets p WHERE p.Status = 'Approved' AND (p.approved_date BETWEEN '$from1' AND '$to1') GROUP BY p.Breed";
         }else{
-            $query = "Select p.type,p.Breed,CAST(((count(p.Breed)/(Select count(*) from pets where Status = 'Approved'))*100) as DECIMAL(11,1)) as 'pet_count' from pets p where p.Status = 'Approved' GROUP By p.Breed";
+            $query = "SELECT p.type,p.Breed,CONCAT(CAST(((COUNT(p.Breed)/(SELECT COUNT(*) FROM pets WHERE STATUS = 'Approved'))*100) AS DECIMAL(11,1)),'%') AS 'pet_count',CONCAT(COUNT(p.`Breed`), ' of ', (SELECT COUNT(*) FROM pets WHERE STATUS = 'Approved')) AS num_count FROM pets p WHERE p.Status = 'Approved' GROUP BY p.Breed";
         }
        
  return $this->db->query($query);
@@ -452,9 +447,9 @@ return $query->result_array();
         if ($from && $to) {
         $from = date("Y-m-d", strtotime($from));
         $to = date("Y-m-d", strtotime($to));
-        $query = "select (CASE WHEN a.Status = 'Approved by City Vet' THEN 'Screened' WHEN a.Status = 'Not Screened by The City Vet Office' THEN 'Unscreened' ELSE 'Blocked' END) as 'Status' , CAST(((count(a.Status)/(select count(*) from adopter where Status != 'n/a'))*100) as DECIMAL(11,1)) as 'status_count' from adopter a where (a.status_update BETWEEN '$from' and '$to') and a.Status != 'n/a' GROUP by a.Status";
+        $query = "SELECT (CASE WHEN a.Status = 'Approved by City Vet' THEN 'Screened' WHEN a.Status = 'Not Screened by The City Vet Office' THEN 'Unscreened' ELSE 'Blocked' END) AS 'Status' , CONCAT(CAST(((COUNT(a.Status)/(SELECT COUNT(*) FROM adopter WHERE STATUS != 'n/a'))*100) AS DECIMAL(11,1)),'%') AS 'status_count',CONCAT(COUNT(a.Status) , ' of ',(SELECT COUNT(*) FROM adopter WHERE STATUS != 'n/a') ) AS num_count  FROM adopter a WHERE (a.status_update BETWEEN '$from' AND '$to') AND a.Status != 'n/a' GROUP BY a.Status";
     }else{
-        $query = "select (CASE WHEN a.Status = 'Approved by City Vet' THEN 'Screened' WHEN a.Status = 'Not Screened by The City Vet Office' THEN 'Unscreened' ELSE 'Blocked' END) as 'Status' , CAST(((count(a.Status)/(select count(*) from adopter where Status != 'n/a'))*100) as DECIMAL(11,1)) as 'status_count' from adopter a where a.Status != 'n/a' GROUP by a.Status";
+        $query = "SELECT (CASE WHEN a.Status = 'Approved by City Vet' THEN 'Screened' WHEN a.Status = 'Not Screened by The City Vet Office' THEN 'Unscreened' ELSE 'Blocked' END) AS 'Status' , CONCAT(CAST(((COUNT(a.Status)/(SELECT COUNT(*) FROM adopter WHERE STATUS != 'n/a'))*100) AS DECIMAL(11,1)),'%') AS 'status_count',CONCAT(COUNT(a.Status) , ' of ',(SELECT COUNT(*) FROM adopter WHERE STATUS != 'n/a') ) AS num_count FROM adopter a WHERE a.Status != 'n/a' GROUP BY a.Status";
     }
      return $this->db->query($query);
     }
@@ -468,9 +463,9 @@ public function chart_petcruelty_data($from = null,$to = null)
     if ($from && $to) {
         $from = date("Y-m-d", strtotime($from));
         $to = date("Y-m-d", strtotime($to));
-        $query = "Select (CASE WHEN pc.category = 'Maltreated' THEN 'Maltreated' WHEN pc.category = 'Tortured' THEN 'Tortured' WHEN pc.category = 'Neglect to provide adequate care' THEN 'Inadequate care' WHEN pc.category = 'Neglect to provide adequate sustenance or shelter' THEN 'Inadequate sustenance' WHEN pc.category = 'Illegal use of pets in research or experiments' THEN 'Illegal Experiments' WHEN pc.category = 'Killing' THEN 'Killing' ELSE 'Others' END) as 'category',CAST(((COUNT(pc.category)/(Select count(*) from pet_cruelty where Remarks = 'Completed')) * 100) as DECIMAL(11,1)) as 'pc_count' from pet_cruelty pc where pc.Remarks= 'Completed' and (pc.remarks_update_date >= '$from' and pc.remarks_update_date <= '$to') GROUP by pc.category";
+        $query = "SELECT (CASE WHEN pc.category = 'Maltreated' THEN 'Maltreated' WHEN pc.category = 'Tortured' THEN 'Tortured' WHEN pc.category = 'Neglect to provide adequate care' THEN 'Inadequate care' WHEN pc.category = 'Neglect to provide adequate sustenance or shelter' THEN 'Inadequate sustenance' WHEN pc.category = 'Illegal use of pets in research or experiments' THEN 'Illegal Experiments' WHEN pc.category = 'Killing' THEN 'Killing' ELSE 'Others' END) AS 'category',CONCAT(CAST(((COUNT(pc.category)/(SELECT COUNT(*) FROM pet_cruelty WHERE Remarks = 'Completed')) * 100) AS DECIMAL(11,1)), '%') AS 'pc_count',CONCAT(COUNT(pc.category), ' of ',(SELECT COUNT(*) FROM pet_cruelty WHERE Remarks = 'Completed')) AS 'num_count' FROM pet_cruelty pc WHERE pc.Remarks= 'Completed' AND (pc.remarks_update_date >= '$from' AND pc.remarks_update_date <= '$to') GROUP BY pc.category";
     }else{
-        $query = "Select (CASE WHEN pc.category = 'Maltreated' THEN 'Maltreated' WHEN pc.category = 'Tortured' THEN 'Tortured' WHEN pc.category = 'Neglect to provide adequate care' THEN 'Inadequate care' WHEN pc.category = 'Neglect to provide adequate sustenance or shelter' THEN 'Inadequate sustenance' WHEN pc.category = 'Illegal use of pets in research or experiments' THEN 'Illegal Experiments' WHEN pc.category = 'Killing' THEN 'Killing' ELSE 'Others' END) as 'category',CAST(((COUNT(pc.category)/(Select count(*) from pet_cruelty where Remarks = 'Completed')) * 100) as DECIMAL(11,1)) as 'pc_count' from pet_cruelty pc where pc.Remarks= 'Completed' GROUP by pc.category";
+        $query = "SELECT (CASE WHEN pc.category = 'Maltreated' THEN 'Maltreated' WHEN pc.category = 'Tortured' THEN 'Tortured' WHEN pc.category = 'Neglect to provide adequate care' THEN 'Inadequate care' WHEN pc.category = 'Neglect to provide adequate sustenance or shelter' THEN 'Inadequate sustenance' WHEN pc.category = 'Illegal use of pets in research or experiments' THEN 'Illegal Experiments' WHEN pc.category = 'Killing' THEN 'Killing' ELSE 'Others' END) AS 'category',CONCAT(CAST(((COUNT(pc.category)/(SELECT COUNT(*) FROM pet_cruelty WHERE Remarks = 'Completed')) * 100) AS DECIMAL(11,1)),'%') AS 'pc_count',CONCAT(COUNT(pc.category), ' of ',(SELECT COUNT(*) FROM pet_cruelty WHERE Remarks = 'Completed')) AS 'num_count'  FROM pet_cruelty pc WHERE pc.Remarks= 'Completed' GROUP BY pc.category";
     }
      return $this->db->query($query);
 }

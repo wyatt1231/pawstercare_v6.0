@@ -471,11 +471,9 @@ class User extends BaseController
     $data = array();
     foreach ($report->result() as $r) {
         $data[] = array(
-           
             $r->Breed,
             $r->pet_count ,
-
-
+            $r->num_count,
         );
     }
     $output = array(
@@ -527,7 +525,7 @@ function chart_adopters_data()
         $data[] = array(
             $r->Status,
             $r->status_count,
-
+            $r->num_count,
 
         );
     }
@@ -579,7 +577,7 @@ function chart_petcruelty_data()
         $data[] = array(
             $r->category,
             $r->pc_count,
-
+            $r->pc_count,
 
         );
     }
