@@ -85,7 +85,7 @@
             </div>
             <div class="box-body" style="">
                 <div>
-                    <div id="myfirstchart" style="height: 550px;" class="font-tnr"></div>
+                    <div id="myfirstchart" style="height: 350px;" class="font-tnr"></div>
                 </div>
             </div>
         </div>
@@ -161,10 +161,11 @@ $(document).ready(function() {
                     ykeys: ['average'],
                     hideHover: true,
                     parseTime: false,
-                    gridTextSize: 16,
+                    gridTextSize: 13,
                     gridTextColor: 'black',
                     verticalGrid: true,
-                    gridTextFamily: 'Times New Roman',
+                    gridTextColor: 'black',
+                        barSize: 20,
                     resize: true,
                     horizontal: true,   
                     stacked: true,
