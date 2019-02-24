@@ -318,17 +318,17 @@ body {
     function displaytable() {
         $('#col1').text("Breed");
         $('#col2').text("Percentage");
-        dt_reported_list = $('#petstable').DataTable({
-          "bAutoWidth": false,
-          "lengthMenu": [ [25, 50, 75, 100], [25, 50, 75, 100] ],
-
-          "processing": true,
-          stateSave: true,
-          colReorder: false,
-          "ajax": {
-            xhr: function()
-            {
-              var xhr = new window.XMLHttpRequest();
+        $('#col3').text("Count");
+      dt_reported_list = $('#petstable').DataTable({
+      "bAutoWidth": false,
+      "lengthMenu": [ [25, 50, 75, 100], [25, 50, 75, 100] ],
+      "processing": true,
+      stateSave: true,
+      colReorder: false,
+      "ajax": {
+        xhr: function()
+        {
+          var xhr = new window.XMLHttpRequest();
                                                         //Upload progress
                                                         xhr.upload.addEventListener("progress", function(evt){
                                                           if (evt.lengthComputable) {
@@ -365,11 +365,16 @@ body {
         var date_from = $("#date_from").val();
         var date_to = $("#date_to").val();
 
-        /*  $("#loading").append("<div class='loader'> </div>");*/
-        var filter2 = $("#filter2").val();
-        if (filter2 == 'adoption') {
-         $('#col1').text("Breed");
-         $('#col2').text("Percentage");
+      /*  $("#loading").append("<div class='loader'> </div>");*/
+   var filter2 = $("#filter2").val();
+if (filter2 == 'adoption') {
+       $('#col1').text("Breed");
+        $('#col2').text("Percentage");
+        $('#col3').text("Count");
+ $('#petstable').DataTable().clear().destroy();
+         dt_reported_list = $('#petstable').DataTable({
+      "bAutoWidth": false,
+      "lengthMenu": [ [25, 50, 75, 100], [25, 50, 75, 100] ],
 
          $('#petstable').DataTable().clear().destroy();
          dt_reported_list = $('#petstable').DataTable({
@@ -411,12 +416,13 @@ body {
         $('#petstable tbody').on('click', 'td', function () {
 
         });
-    }
-    else if (filter2 == 'users') {
-     $('#col1').text("Status");
-     $('#col2').text("Percentage");
-     $('#petstable').DataTable().clear().destroy();
-     dt_reported_list = $('#petstable').DataTable({
+      }
+else if (filter2 == 'users') {
+       $('#col1').text("Status");
+        $('#col2').text("Percentage");
+        $('#col3').text("Count");
+ $('#petstable').DataTable().clear().destroy();
+         dt_reported_list = $('#petstable').DataTable({
       "bAutoWidth": false,
       "lengthMenu": [ [25, 50, 75, 100], [25, 50, 75, 100] ],
 
@@ -455,11 +461,12 @@ body {
         $('#petstable tbody').on('click', 'td', function () {
 
         });
-    }else {
-     $('#col1').text("Category");
-     $('#col2').text("Percentage");
-     $('#petstable').DataTable().clear().destroy();
-     dt_reported_list = $('#petstable').DataTable({
+      }else {
+       $('#col1').text("Category");
+        $('#col2').text("Percentage");
+        $('#col3').text("Count");
+ $('#petstable').DataTable().clear().destroy();
+         dt_reported_list = $('#petstable').DataTable({
       "bAutoWidth": false,
       "lengthMenu": [ [25, 50, 75, 100], [25, 50, 75, 100] ],
 

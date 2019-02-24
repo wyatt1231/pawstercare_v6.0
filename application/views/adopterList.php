@@ -209,9 +209,6 @@
         </div>
 </div>
 
-
-
-
 <script>
 function openCity(evt, cityName) {
     var i, tabcontent, tablinks;

@@ -429,8 +429,6 @@ $(document).ready(function() {
     });
     $('#pettable tbody').on('dblclick', 'td', function() {
         var data = dt_pet_list.row($(this).parents('tr')).data();
-
-
         $("#mdl_edit_pet").modal('show');
         $("#edit_pet_image_main").empty();
         $("#selected_pet_rating").empty();

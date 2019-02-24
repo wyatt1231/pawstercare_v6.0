@@ -45,11 +45,7 @@ table {
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-<<<<<<< HEAD
-      <i class="fa fa-users"></i> Pet Cruelty Report
-=======
       <i class="fa fa-flag"></i> Cruelty Posts
->>>>>>> 46e2998fb1f9c29679395381ac1fc2f443dc0bf4
 
     </h1>
   </section>
@@ -365,13 +361,8 @@ table {
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-<<<<<<< HEAD
-          <button type="button" class="close" data-dismiss="done">&times;</button>
-          <h4 class="modal-title">What are the actions taken in this pet cruelty report? </h4>
-=======
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">What are the actions taken for this pet cruelty report? </h4>
->>>>>>> 46e2998fb1f9c29679395381ac1fc2f443dc0bf4
           <select class="form-control required" id="status" name="status">
             <option class="form-control required"  value="For Verification" <?php if("For Verification" =="For Verification"){ echo "selected";}   ?>>For Verification</option>
 
