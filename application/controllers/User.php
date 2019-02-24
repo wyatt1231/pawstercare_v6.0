@@ -1478,6 +1478,7 @@ function crueltyListingComp_data()
             $r->category,
             $r->Remarks,
             $r->posted_date,
+            $r->completed_date,
             "<a class=\"btn btn-sm btn-info\"  title=\"More Info\"><i class=\"fa fa-eye\" id='btnpat'></i></a>",
 
 

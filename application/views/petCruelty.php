@@ -135,11 +135,12 @@ aria-hidden="true">
 
                  <!--  <th>ID</th> -->
                  <!-- <th>Image</th>-->
-                 <th class="text-center">Pet id</th>
+                 <th class="text-center">id</th>
                  <th class="text-center">Sender Name</th>
                  <th class="text-center">Title</th>
                  <th class="text-center">Status</th>
                  <th class="text-center">Posted Date</th>
+                 <th class="text-center">Completed Date</th>
                </tr>
              </thead>
              <tbody >
@@ -198,7 +199,7 @@ aria-hidden="true">
 
                  <!--  <th>ID</th> -->
                  <!-- <th>Image</th>-->
-                 <th class="text-center">Pet id</th>
+                 <th class="text-center">id</th>
                  <th class="text-center">Sender Name</th>
                  <th class="text-center">Title</th>
                  <th class="text-center">Status</th>
