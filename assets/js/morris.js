@@ -1687,10 +1687,16 @@
           }
         }
       }
-      barWidth = (groupWidth * this.options.barSizeRatio - this.options.barGap * (numBars - 1)) / numBars;
-      if (this.options.barSize) {
-        barWidth = Math.min(barWidth, this.options.barSize);
+       barWidth = (groupWidth * this.options.barSizeRatio - this.options.barGap * (numBars - 1)) / numBars;
+      leftPadding = groupWidth * (1 - this.options.barSizeRatio) / 2;
+
+      /* Hack! I don't want the bars getting too wide! */
+      if (barWidth > 30 && this.options.ykeys.length === 1) {
+        barWidth = 30;
+        leftPadding = (groupWidth - barWidth) / 2;
       }
+
+       
       spaceLeft = groupWidth - barWidth * numBars - this.options.barGap * (numBars - 1);
       leftPadding = spaceLeft / 2;
       zeroPos = this.ymin <= 0 && this.ymax >= 0 ? this.transY(0) : null;
