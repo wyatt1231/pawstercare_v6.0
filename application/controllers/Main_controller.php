@@ -219,6 +219,9 @@ class Main_controller extends CI_Controller
         } else {
             $response['error'] = "true";
             $response['response'] = "Server error has occured.";
+        }else{
+            $response['error'] = "true";
+            $response['response'] = "Server error has occured.";
         }
         echo json_encode($response);
     }
